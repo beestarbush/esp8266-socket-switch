@@ -16,7 +16,7 @@ extern "C" {
 #define WIFI_SSID       "##YOUR_SSID##"
 #define WIFI_PASS       "##YOUR_WIFI_PASS"
 
-// IP specific settings
+// IP specific settings, comment this if you would like to use DHCP.
 IPAddress gIpAddress      (192, 168, 1, 231);
 IPAddress gSubnetMask     (255, 255, 255, 0);
 IPAddress gDefaultGateway (192, 168, 1, 1);
@@ -254,7 +254,8 @@ void ProcessRebootRequest() {
 void CheckPeriodicallyForActiveConnection() {
     unsigned long lCurrentMillis = millis();
 
-    if ((lCurrentMillis - gPreviousMillis) >= (gcConnectionCheckerFrequency * 60000)) {
+    if ((lCurrentMillis - gPreviousMillis) >= (gcConnectionCheckerFrequency * 60000)) 
+    {
         gPreviousMillis = lCurrentMillis;
         CheckConnection();
     }
