@@ -33,7 +33,7 @@ IPAddress gDnsServer      (192, 168, 1, 1);
 /*--------------------------------------------------------------------------------------*/
 
 /*---------------------------- Software version definition -----------------------------*/
-#define VERSION    "\n\r Version: v2.0 (Banana)"
+#define VERSION    "\n\r Version: v3.0 (Citron)"
 /*--------------------------------------------------------------------------------------*/
 
 /*-------------------------------- Global definitions ----------------------------------*/
@@ -80,17 +80,17 @@ void setup() {
 }
 
 void loop() {
+    CheckPeriodicallyForActiveConnection();
+    if (gRequestRestart)
+    {
+        ProcessRebootRequest();
+    }
+  
     if (gMqttClient.loop())
     {
-        CheckPeriodicallyForActiveConnection();
-        
         if (gCurrentStateChanged)
         {
             PublishCurrentState();
-        }
-        if (gRequestRestart)
-        {
-            ProcessRebootRequest();
         }    
     }
 }
@@ -254,7 +254,7 @@ void ProcessRebootRequest() {
 void CheckPeriodicallyForActiveConnection() {
     unsigned long lCurrentMillis = millis();
 
-    if ((lCurrentMillis - gPreviousMillis) >= (gcConnectionCheckerFrequency * 60000)) 
+    if ((lCurrentMillis - gPreviousMillis) >= (gcConnectionCheckerFrequency * 30000)) 
     {
         gPreviousMillis = lCurrentMillis;
         CheckConnection();
