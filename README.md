@@ -31,3 +31,6 @@ At last the MQTT settings needs to be configured. The client ID, MQTT broker ser
  - #define MQTT_TOPIC      "/home/testtopic/01"
  - #define MQTT_USER       "mqtt_broker_user"
  - #define MQTT_PASS       "mqtt_broker_password"
+ 
+#### Device selection
+When flashing the device, make sure that the correct board is selected. For regular SonOff switches use the Generic ESP8266 module and for the SonOff Touch switches use the Generic ESP8285 module.
