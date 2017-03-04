@@ -33,7 +33,7 @@ IPAddress gDnsServer      (192, 168, 1, 1);
 /*--------------------------------------------------------------------------------------*/
 
 /*---------------------------- Software version definition -----------------------------*/
-#define VERSION    "\n\r Version: v3.0 (Citron)"
+#define VERSION    "\n\r Version: v3.1 (Citronella)"
 /*--------------------------------------------------------------------------------------*/
 
 /*-------------------------------- Global definitions ----------------------------------*/
@@ -176,12 +176,10 @@ void OnMqttDataAvailable(const MQTT::Publish& aPublishedData) {
     }
     else if (aPublishedData.payload_string() == "on") 
     {
-        digitalWrite(LED, LOW);
         digitalWrite(RELAY, HIGH);
     }
     else if (aPublishedData.payload_string() == "off") 
     {
-        digitalWrite(LED, HIGH);
         digitalWrite(RELAY, LOW);
     }
     else if (aPublishedData.payload_string() == "reset") 
@@ -201,7 +199,6 @@ void OnButtonTick() {
 
     if (gButtonCount > 1 && gButtonCount <= 40) 
     {   
-        digitalWrite(LED, !digitalRead(LED));
         digitalWrite(RELAY, !digitalRead(RELAY));
         gCurrentStateChanged = true;
     } 
@@ -267,6 +264,8 @@ void CheckConnection() {
         if (gMqttClient.connected()) 
         {
             Serial.println("Mqtt connection to broker is active.");
+            ProcessLed(LED, 400, 1);
+            digitalWrite(LED, HIGH);
         } 
         else 
         {
