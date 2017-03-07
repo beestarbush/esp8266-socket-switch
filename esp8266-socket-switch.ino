@@ -212,7 +212,7 @@ void OnButtonTick() {
 }
 
 void PublishCurrentState() {
-    if(digitalRead(LED) == LOW)
+    if(digitalRead(RELAY) == HIGH)
     {
         gMqttClient.publish(MQTT::Publish(MQTT_TOPIC"/stat", "on").set_retain().set_qos(1));
         Serial.println("Relay is set to on.");
