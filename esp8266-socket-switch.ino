@@ -2,6 +2,8 @@
 #include <PubSubClient.h>
 #include <Ticker.h>
 
+/* ESP8266 socket switch */
+
 extern "C" { 
   #include "user_interface.h" 
 }
