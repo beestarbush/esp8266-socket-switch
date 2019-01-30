@@ -1,4 +1,4 @@
-# ESP8266 socket switch
+## ESP8266 socket switch
 
 This software is written for the SonOff WiFi wireless switches. When a switch is loaded with this software, it is able to use the regular functionality, but it is also possible to switch it via the MQTT protocol. This means that the switch will connect to a specified WiFi network, connect to a broker and then it is able to send and receive data via the publish/subscribe mechanism. This can be combined with home automation systems like HomeAssistant, OpenHAB etc.
 
